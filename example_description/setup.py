@@ -12,6 +12,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', glob('launch/*')),   # Incluye todos los archivos de launch
         ('share/' + package_name + '/urdf', glob('urdf/*.urdf')),          # Incluye todos los archivos de urdf
+        ('share/' + package_name + '/urdf', glob('urdf/*.stl')),           # Incluye todos los archivos de stl
         ('share/' + package_name + '/urdf/sensors', glob('urdf/sensors/*')),          # Incluye todos los archivos de urdf
         ('share/' + package_name + '/rviz', glob('rviz/*')),          # Incluye todos los archivos de rviz
         ('share/' + package_name + '/config', glob('config/*')),          # Incluye todos los archivos de config
