@@ -13,11 +13,8 @@ import xacro
 def generate_launch_description():
   package_path = os.path.join( get_package_share_directory('example_description') )
   rviz_config_path = os.path.join( package_path , 'rviz', 'urdf.rviz' )
-  print(rviz_config_path)
-  #rviz_config_path = os.path.join( get_package_prefix('example_description') , 'rviz', 'urdf.rviz' )
-  print(rviz_config_path)
-  # Ruta al archivo URDF y a la configuración del controlador
-  model_path = os.path.join( package_path , 'urdf', 'rrr_full_robot_stl_position_controller_sensors.urdf')
+  # Ruta al archivo URDF y a la ruta del archivo de mundo
+  model_path = os.path.join( package_path , 'urdf', 'rrr_full_robot_stl_position_controller.urdf')
   world_path = os.path.join( package_path , 'worlds', 'new_world.world')
   #Gazebo
   gazebo = ExecuteProcess(

@@ -4,11 +4,11 @@
   <xacro:property name="package_name" value="example_description"/>
   <xacro:include filename="$(find ${package_name})/urdf/rrr_properties.urdf"/>
   <xacro:include filename="$(find ${package_name})/urdf/rrr_macros.urdf"/>
+  <xacro:include filename="$(find ${package_name})/urdf/sensors/rrr_sensor_macro.urdf"/>
 
   <!--Definicion de eslabones-->
   <xacro:link_macro name="base_link" box = "0.2 0.1 0.2" origin = "0 0 0.05" 
     rotation = "${pi / 2} 0 0" material = "black"/>
-  
   <xacro:link_macro_stl name="shoulder_link"  stl = "file://$(find ${package_name})/urdf/link1.stl" 
   box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "red"/>
   <xacro:link_macro_stl name="arm_link"       stl = "file://$(find ${package_name})/urdf/link1.stl" 
@@ -17,6 +17,7 @@
   box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "blue"/>
   <!--Eslabón vacío-->
   <link name = "p_link"/>
+
   <!--Definicion de juntas-->
   <xacro:joint_macro name="shoulder_joint" type = "revolute" parent = "base_link" child = "shoulder_link" 
     origin = "0 0 0.1" rotation_origin = "${pi / 2} 0 0" axis = "0 0 1"
@@ -27,8 +28,26 @@
   <xacro:joint_macro name="forearm_joint" type = "revolute" parent = "arm_link" child = "forearm_link" 
     origin = "0.3 0 0" rotation_origin = "0 0 0" axis = "0 0 1"
     eff = "10" vel = "1.57" low = "${-pi / 2}" up = "${pi / 2}"/>
-  <!--Junta fija-->
+  <!--Junta fija para eslabón vacío-->
   <xacro:joint_macro name="p_joint" type = "fixed" parent = "forearm_link" child = "p_link" 
     origin = "0.3 0 0" rotation_origin = "-${pi / 2} 0 0" axis = "0 0 1"
     eff = "0" vel = "0" low = "0" up = "0"/>
+
+  <!--Definición de juntas para gazebo-->
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <xacro:gazebo_joint_macro name="shoulder_joint"/>
+    <xacro:gazebo_joint_macro name="arm_joint"/>
+    <xacro:gazebo_joint_macro name="forearm_joint"/>
+    <xacro:gazebo_joint_macro name="p_joint"/>
+  </ros2_control>
+
+  <!--Sensores -->
+  <xacro:sonar_macro name="sonar_0" link = "p_link"/>
+  <xacro:camera_macro name="camera_0" link = "p_link"/>
+  <xacro:lidar_macro name="lidar_0" link = "p_link"/>
+  <xacro:imu_macro name="imu_0" link = "p_link"/>
+
 </robot>

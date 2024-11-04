@@ -24,6 +24,7 @@
       </collision>
     </link>
   </xacro:macro>
+
   <!--Definicion de juntas-->
   <xacro:macro name="joint_macro" params="name type parent child 
                                           origin rotation_origin axis 
@@ -36,6 +37,17 @@
       <limit effort="${eff}" velocity="${vel}" lower="${low}" upper="${up}" />
     </joint>
   </xacro:macro>
+
+  <!--Definicion de juntas para Gazebo-->
+  <xacro:macro name="gazebo_joint_macro" params="name"> 
+    <joint name="${name}">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+  </xacro:macro>
+  
   <!--Definicion de eslabones con stl-->
   <xacro:macro name="link_macro_stl" params="name box stl origin rotation material">
     <link name = "${name}">
