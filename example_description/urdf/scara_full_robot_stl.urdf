@@ -7,6 +7,7 @@
   <xacro:include filename="$(find ${package_name})/urdf/sensors/rrr_sensor_macro.urdf"/>
 
   <!--Definicion de eslabones-->
+  <link name="world"/>
   <xacro:link_macro name="base_link" box = "0.2 0.1 0.2" origin = "0 0 0.05" 
     rotation = "${pi / 2} 0 0" material = "black"/>
   <xacro:link_macro_stl name="shoulder_link"  stl = "file://$(find ${package_name})/urdf/link1.stl" 
@@ -19,8 +20,11 @@
   <link name = "p_link"/>
 
   <!--Definicion de juntas-->
+  <xacro:joint_macro name="world_joint" type = "fixed" parent = "world" child = "base_link" 
+    origin = "0 0 0" rotation_origin = "0 0 0" axis = "0 0 1"
+    eff = "0" vel = "0" low = "0" up = "0"/>
   <xacro:joint_macro name="shoulder_joint" type = "revolute" parent = "base_link" child = "shoulder_link" 
-    origin = "0 0 0.1" rotation_origin = "${pi / 2} 0 0" axis = "0 0 1"
+    origin = "0 0 0.1" rotation_origin = "0 0 0" axis = "0 0 1"
     eff = "10" vel = "1.57" low = "${-pi / 2}" up = "${pi / 2}"/>
   <xacro:joint_macro name="arm_joint" type = "revolute" parent = "shoulder_link" child = "arm_link" 
     origin = "0.3 0 0" rotation_origin = "0 0 0" axis = "0 0 1"
@@ -30,7 +34,7 @@
     eff = "10" vel = "1.57" low = "${-pi / 2}" up = "${pi / 2}"/>
   <!--Junta fija para eslabón vacío-->
   <xacro:joint_macro name="p_joint" type = "fixed" parent = "forearm_link" child = "p_link" 
-    origin = "0.3 0 0" rotation_origin = "-${pi / 2} 0 0" axis = "0 0 1"
+    origin = "0.3 0 0" rotation_origin = "0 0 0" axis = "0 0 1"
     eff = "0" vel = "0" low = "0" up = "0"/>
 
   <!--Definición de juntas para gazebo-->
@@ -56,6 +60,7 @@
   <gazebo reference="forearm_link">
     <material>Gazebo/Green</material>
   </gazebo>
+
   <!--Sensores -->
   <xacro:sonar_macro name="sonar_0" link = "p_link"/>
   <xacro:camera_macro name="camera_0" link = "p_link"/>

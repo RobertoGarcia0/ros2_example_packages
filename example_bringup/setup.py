@@ -21,8 +21,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "trajectory_test = example_bringup.trajectory_test:main",
-            "position_test = example_bringup.position_test:main",
+            "rrr_trajectory_test = example_bringup.rrr_trajectory_test:main",
+            "rrr_position_test = example_bringup.rrr_position_test:main",
+            "scara_trajectory_test = example_bringup.scara_trajectory_test:main",
+            "scara_position_test = example_bringup.scara_position_test:main",
         ],
     },
 )
