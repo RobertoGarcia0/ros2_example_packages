@@ -3,6 +3,7 @@
   <!--Archivos externos-->
   <xacro:property name="package_name" value="example_description"/>
   <xacro:include filename="$(find ${package_name})/urdf/rrr_full_robot_stl.urdf"/>
+  <xacro:include filename="$(find ${package_name})/urdf/sensors/rrr_sensor_macro.urdf"/>
   
   <ros2_control name="GazeboSystem" type="system">
     <hardware>
@@ -34,9 +35,10 @@
     </plugin>
   </gazebo>
   <!--Sensores -->
-  <xacro:include filename="$(find ${package_name})/urdf/sensors/imu_sensor.urdf"/>
-  <xacro:include filename="$(find ${package_name})/urdf/sensors/camara_sensor.urdf"/>
-  <xacro:include filename="$(find ${package_name})/urdf/sensors/lidar_sensor.urdf"/>  
-  <xacro:include filename="$(find ${package_name})/urdf/sensors/sonar_sensor.urdf"/> 
+  <xacro:camera_macro name="camera_0" link = "p_link"/>
+  <xacro:lidar_macro name="lidar_0" link = "p_link"/>
+  <xacro:imu_macro name="imu_0" link = "p_link"/>
+  <xacro:sonar_macro name="sonar_0" link = "p_link"/>
+  
 
 </robot>

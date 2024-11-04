@@ -17,9 +17,8 @@ def generate_launch_description():
   #rviz_config_path = os.path.join( get_package_prefix('example_description') , 'rviz', 'urdf.rviz' )
   print(rviz_config_path)
   # Ruta al archivo URDF y a la configuración del controlador
-  model_path = os.path.join( package_path , 'urdf', 'rrr_full_robot_stl_position_controller.urdf')
+  model_path = os.path.join( package_path , 'urdf', 'rrr_full_robot_stl_position_controller_sensors.urdf')
   world_path = os.path.join( package_path , 'worlds', 'new_world.world')
-  print("DSADASGDAGDAG")
   #Gazebo
   gazebo = ExecuteProcess(
     cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', world_path],
