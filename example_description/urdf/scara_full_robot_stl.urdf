@@ -9,13 +9,13 @@
   <!--Definicion de eslabones-->
   <link name="world"/>
   <xacro:link_macro name="base_link" box = "0.2 0.1 0.2" origin = "0 0 0.05" 
-    rotation = "${pi / 2} 0 0" material = "black"/>
+    rotation = "${pi / 2} 0 0" material = "black" mass = "10"/>
   <xacro:link_macro_stl name="shoulder_link"  stl = "file://$(find ${package_name})/urdf/link1.stl" 
-  box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "red"/>
+  box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "red" mass = "10"/>
   <xacro:link_macro_stl name="arm_link"       stl = "file://$(find ${package_name})/urdf/link1.stl" 
-  box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "green"/>
+  box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "green" mass = "10"/>
   <xacro:link_macro_stl name="forearm_link"   stl = "file://$(find ${package_name})/urdf/link1.stl" 
-  box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "blue"/>
+  box = "0.3 0.03 0.03" origin = "0.15 0 0" rotation = "0 0 0" material = "blue" mass = "10"/>
   <!--Eslabón vacío-->
   <link name = "p_link"/>
 

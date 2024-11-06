@@ -7,16 +7,16 @@
 
   <!--Definicion de eslabones-->
   <xacro:link_macro name="base_link" box = "0.2 0.1 0.2" origin = "0 0 0.05" 
-    rotation = "1.57 0 0" material = "black"/>
+    rotation = "1.57 0 0" material = "black" mass  = "10"/>
   
   <xacro:link_macro name="shoulder_link" box = "0.3 0.03 0.03" origin = "0.15 0 0" 
-    rotation = "0 0 0" material = "red"/>
+    rotation = "0 0 0" material = "red" mass  = "10"/>
   
   <xacro:link_macro name="arm_link" box = "0.3 0.03 0.03" origin = "0.15 0 0" 
-    rotation = "0 0 0" material = "green"/>
+    rotation = "0 0 0" material = "green" mass  = "10"/>
 
   <xacro:link_macro name="forearm_link" box = "0.3 0.03 0.03" origin = "0.15 0 0" 
-    rotation = "0 0 0" material = "blue"/>
+    rotation = "0 0 0" material = "blue" mass  = "10"/>
 
   <!--Definicion de juntas-->
   <xacro:joint_macro name="shoulder_joint" type = "revolute" parent = "base_link" child = "shoulder_link" 

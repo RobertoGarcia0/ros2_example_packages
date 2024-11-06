@@ -14,7 +14,7 @@ def generate_launch_description():
   package_path = os.path.join( get_package_share_directory('example_description') )
   rviz_config_path = os.path.join( package_path , 'rviz', 'model_sensors.rviz' )
   # Ruta al archivo URDF y a la ruta del archivo de mundo
-  model_path = os.path.join( package_path , 'urdf', 'rrr_full_robot_stl_position_controller.urdf')
+  model_path = os.path.join( package_path , 'urdf', 'rrr_full_robot_stl_trajectory_controller.urdf')
   world_path = os.path.join( package_path , 'worlds', 'new_world.world')
   #Gazebo
   gazebo = ExecuteProcess(

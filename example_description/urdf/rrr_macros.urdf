@@ -1,6 +1,6 @@
 <robot name="rrr_macros" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!--Definicion de eslabones-->
-  <xacro:macro name="link_macro" params="name box origin rotation material">
+  <xacro:macro name="link_macro" params="name box origin rotation material mass">
     <link name = "${name}">
       <visual>
         <geometry>
@@ -10,11 +10,14 @@
         <material name = "${material}"/>
       </visual>
       <inertial>
-        <mass value="1.0"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-                iyy="0.001" iyz="0.0"
-                izz="0.001"/>
+        <mass value="${mass}"/>
+        <origin xyz="${origin}" rpy="${rotation}"/>
+        <inertia ixx="${(float(box.split()[1])**2 + float(box.split()[2])**2) * (mass/12)}" 
+                 ixy="0.0" 
+                 ixz="0.0"
+                 iyy="${(float(box.split()[0])**2 + float(box.split()[2])**2) * (mass/12)}" 
+                 iyz="0.0"
+                 izz="${(float(box.split()[0])**2 + float(box.split()[1])**2) * (mass/12)}" />
       </inertial>
       <collision>
         <geometry>
@@ -49,7 +52,7 @@
   </xacro:macro>
   
   <!--Definicion de eslabones con stl-->
-  <xacro:macro name="link_macro_stl" params="name box stl origin rotation material">
+  <xacro:macro name="link_macro_stl" params="name box stl origin rotation material mass">
     <link name = "${name}">
       <visual>
         <geometry>
@@ -59,11 +62,14 @@
         <material name = "${material}"/>
       </visual>
       <inertial>
-        <mass value="1.0"/>
+        <mass value="${mass}"/>
         <origin xyz="${origin}" rpy="${rotation}"/>
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-                iyy="0.001" iyz="0.0"
-                izz="0.001"/>
+        <inertia ixx="${(float(box.split()[1])**2 + float(box.split()[2])**2) * (mass/12)}" 
+                 ixy="0.0" 
+                 ixz="0.0"
+                 iyy="${(float(box.split()[0])**2 + float(box.split()[2])**2) * (mass/12)}" 
+                 iyz="0.0"
+                 izz="${(float(box.split()[0])**2 + float(box.split()[1])**2) * (mass/12)}" />
       </inertial>
       <collision>
         <geometry>
