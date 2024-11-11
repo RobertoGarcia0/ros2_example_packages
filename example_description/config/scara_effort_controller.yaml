@@ -1,0 +1,37 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 #Hz
+    scara_effort_controller:
+      type: effort_controllers/JointGroupEffortController
+
+
+      
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+ 
+scara_effort_controller:
+  ros__parameters:
+    command_interfaces:
+      - effort
+      - position
+      - velocity
+    state_interfaces:
+      - effort
+      - position
+      - velocity
+    joints:
+      - shoulder_joint
+      - arm_joint
+      - forearm_joint
+
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+
+    allow_partial_joints_goal: false
+    open_loop_control: true
+    constraints:
+      stopped_velocity_tolerance: 0.01
+      goal_time: 0.0
+      joint1:
+        trajectory: 0.05
+        goal: 0.03

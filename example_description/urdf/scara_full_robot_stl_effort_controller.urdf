@@ -1,0 +1,14 @@
+<robot name="rrr_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--Archivos externos-->
+  <xacro:property name="package_name" value="example_description"/>
+  <xacro:include filename="$(find ${package_name})/urdf/scara_full_robot_stl.urdf"/>
+
+  <!--Pluging de control de par -->
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control" >
+      <parameters>$(find ${package_name})/config/scara_effort_controller.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+</robot>

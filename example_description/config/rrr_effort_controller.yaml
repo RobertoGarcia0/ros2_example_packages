@@ -1,0 +1,22 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 #Hz
+    rrr_effort_controller:
+      type: effort_controllers/JointGroupEffortController
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+ 
+rrr_effort_controller:
+  ros__parameters:
+    command_interfaces:
+      - effort
+      - position
+      - velocity
+    state_interfaces:
+      - effort
+      - position
+      - velocity
+    joints:
+      - shoulder_joint
+      - arm_joint
+      - forearm_joint
